@@ -1,0 +1,14 @@
+{
+    "home_timezone": "America/New_York",
+    "output_directory": "./timereports",
+    "major_timezones": [
+        "America/Los_Angeles",
+        "America/Chicago",
+        "America/New_York",
+        "Europe/London",
+        "Europe/Paris",
+        "Asia/Dubai",
+        "Asia/Tokyo",
+        "Australia/Sydney"
+    ]
+}

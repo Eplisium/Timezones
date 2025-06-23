@@ -1,24 +1,78 @@
 import pytz
 from datetime import datetime
 import os
+import json
 
-# Configuration for Home Time Zone (Change this to your preferred time zone)
-HOME_TIMEZONE = "America/New_York"  # Example: You can set this to any valid time zone, e.g., "Europe/London"
+# Function to load configuration from config.json
+def load_config(config_file="config.json"):
+    try:
+        with open(config_file, 'r') as f:
+            config = json.load(f)
+            return (
+                config.get("home_timezone", "America/New_York"),
+                config.get("output_directory", "./timereports"),
+                config.get("major_timezones", [
+                    "America/Los_Angeles",
+                    "America/Chicago",
+                    "America/New_York",
+                    "Europe/London",
+                    "Europe/Paris",
+                    "Asia/Dubai",
+                    "Asia/Tokyo",
+                    "Australia/Sydney"
+                ])
+            )
+    except FileNotFoundError:
+        print(f"Configuration file {config_file} not found. Using default settings.")
+        return (
+            "America/New_York",
+            "./timereports",
+            [
+                "America/Los_Angeles",
+                "America/Chicago",
+                "America/New_York",
+                "Europe/London",
+                "Europe/Paris",
+                "Asia/Dubai",
+                "Asia/Tokyo",
+                "Australia/Sydney"
+            ]
+        )
+    except json.JSONDecodeError:
+        print(f"Error decoding {config_file}. Using default settings.")
+        return (
+            "America/New_York",
+            "./timereports",
+            [
+                "America/Los_Angeles",
+                "America/Chicago",
+                "America/New_York",
+                "Europe/London",
+                "Europe/Paris",
+                "Asia/Dubai",
+                "Asia/Tokyo",
+                "Australia/Sydney"
+            ]
+        )
+    except Exception as e:
+        print(f"Error loading configuration from {config_file}: {e}. Using default settings.")
+        return (
+            "America/New_York",
+            "./timereports",
+            [
+                "America/Los_Angeles",
+                "America/Chicago",
+                "America/New_York",
+                "Europe/London",
+                "Europe/Paris",
+                "Asia/Dubai",
+                "Asia/Tokyo",
+                "Australia/Sydney"
+            ]
+        )
 
-# Optional Output Directory (Set to None or empty string to use the current directory)
-OUTPUT_DIRECTORY = "./timereports"  # Example: "C:/Users/Rue/Documents/TimeReports" or "./TimeReports"
-
-# List of major time zones for comparison (can be customized)
-MAJOR_TIMEZONES = [
-    "America/Los_Angeles",  # Pacific Time (US)
-    "America/Chicago",      # Central Time (US)
-    "America/New_York",     # Eastern Time (US)
-    "Europe/London",        # Greenwich Mean Time / British Summer Time
-    "Europe/Paris",         # Central European Time
-    "Asia/Dubai",           # Gulf Standard Time
-    "Asia/Tokyo",           # Japan Standard Time
-    "Australia/Sydney"      # Australian Eastern Time
-]
+# Load configuration
+HOME_TIMEZONE, OUTPUT_DIRECTORY, MAJOR_TIMEZONES = load_config()
 
 def get_all_time_zones_times(home_tz):
     # Get the current UTC time
