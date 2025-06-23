@@ -6,7 +6,7 @@ import os
 HOME_TIMEZONE = "America/New_York"  # Example: You can set this to any valid time zone, e.g., "Europe/London"
 
 # Optional Output Directory (Set to None or empty string to use the current directory)
-OUTPUT_DIRECTORY = "./Timereports"  # Example: "C:/Users/Rue/Documents/TimeReports" or "./TimeReports"
+OUTPUT_DIRECTORY = "./timereports"  # Example: "C:/Users/Rue/Documents/TimeReports" or "./TimeReports"
 
 # List of major time zones for comparison (can be customized)
 MAJOR_TIMEZONES = [
