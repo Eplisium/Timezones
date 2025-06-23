@@ -101,7 +101,7 @@ Europe/London                    London                      2023-10-15 19:30:00
 
 If you'd like to improve this script, feel free to fork the repository (if it exists) and submit pull requests. For bugs or suggestions, please open an issue or contact the author.
 
-Author: Rue  
+Author: https://github.com/Eplisium  
 Created: [12:46 AM 6/23/2025]
 
 ---
